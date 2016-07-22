@@ -1,6 +1,6 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# Router.js
+# Client Routing
 
 Why a router?  Shouldn't this go on the back end?
 
@@ -29,8 +29,7 @@ router in this template for your use.
 
 By the end of this, developers should be able to:
 
--   Create a router using Router.js
--   Properly map routes
+-   Write a client router with appropriately named routes
 -   Create click events that navigate between view states
 -   Render data retrieved from an API based on a route
 -   Render handlebars templates based on routes populated with API payload.
@@ -201,6 +200,8 @@ OR
 
 ## Additional Resources
 
+-   [Router5](http://router5.github.io)
+-   [page (router)](http://smalljs.org/client-side-routing/page/)
 -   [Router.js](https://github.com/tildeio/router.js/)
 
 ## [License](LICENSE)
