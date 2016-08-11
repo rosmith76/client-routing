@@ -1,7 +1,15 @@
 'use strict';
 
-// user require with a reference to bundle the file and use it in this file
-// var example = require('./example');
+const router = require('./router/index');
 
-// use require without a reference to ensure a file is bundled
-require('./router');
+// useMiddleware should only ever be called once
+// see: http://router5.github.io/docs/middleware.html
+router.useMiddleware(require('./router/dom').transition);
+
+const routerEvents = require('./router/events');
+
+$(() => {
+  router.start();
+
+  routerEvents.addHandlers();
+});
