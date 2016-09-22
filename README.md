@@ -32,7 +32,6 @@ By the end of this, developers should be able to:
 -   Write a client router with appropriately named routes
 -   Create click events that navigate between view states
 -   Render data retrieved from an API based on a route
--   Render handlebars templates based on routes populated with API payload.
 
 ## Preparation
 
