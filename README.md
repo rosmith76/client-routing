@@ -53,7 +53,17 @@ By the end of this, developers should be able to:
 -   Be ready to answer questions to on what is happening with the router.  Also
     where you would write various pieces of your code.
 
-## Demo: Investigating the Router
+## Demo I: Without Client Routing
+
+Watch as I quickly create a webapp without using a client side router.
+
+I am just going to be using the [browser-template](https://github.com/ga-wdi-boston/browser-template) for this.
+
+Don't try to follow along for this, I will be moving quickly. Instead think
+about the difference between what I am creating and what you understand from
+the previous lab.
+
+## Demo II: Investigating the Router
 
 Please watch as I create a cat's route.  You can follow along on your machine
 if it helps but you will be creating your own route shortly, so feel free to
@@ -69,105 +79,45 @@ understandable demo.
 In my HTML I'm going to add the following code to my navbar:
 
 ```html
-<li><a class="cats">Cats</a></li>
+<li><a href="#cats">Cats</a></li>
 ```
 
-Cool, so now I have a line item, let's register an event. In
-`scrips/routing/handlers.js` I'm going to add the code, there should only be
-one line that you are unfamiliar with:
+Cool, so now I have a line item, let's take a look in `router/index.js`.
+Notice a pattern in the `Routes` array?  I'm going to follow that pattern and
+add to it:
 
 ```js
-$('.cats').on('click', function(e){
-  e.preventDefault();
-  router.handleURL('/cats');
-});
-```
-
-If we put a debugger inside of our click handler we can see that the click is
-being registered.  Inside of our click handler we tell the router to handle the
-URL for `/cats` but we have yet to tell our router to map the `/cats` route.
-
-Building on the code that is already in our `index.js`. Let's add to the
-router.map function in the same pattern as the other routes.
-
-Using the same pattern I'm going to match the cats route:
-
-```js
-match('/cats').to('cats');
+{ name: 'cats', path: '/cats' },
 ```
 
 Now when we click the `cats` button in our navbar we can see the URL change.
 
-The URL changes, which is all well and good but we're not quite there yet. I
-want to change the content that appears in my main div, which in this case is
-is a div with an ID of `main-content`.
+Take in look in `index.html`, notice a pattern? I'm going to follow that
+pattern:
 
-___Please note that you do not need to limit yourself to only changing divs___
-___this can be applied to classes, entire pages or just components that___
-___make up a page.___
+```html
+<div id="cats" class="hidden">
+  <h2>Cats</h2>
 
-`scripts/routing/router.js` is where I'm going to write the code that will
-change the content.
-
-Using `myHandler.home` as the basis for how we are going to finish our `cats`
-route we're going to create a `myHandlers.cats`
-
-```js
-myHandlers.cats = {
-  model: function(params) {
-    // define template
-    return // return template (+ more work if needed)
-  },
-  setup: function(page) {
-    // do additional page setup here if necessary
-    $('#main-content').html(page);
-  }
-};
+  <p>I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+    I like cats! I like cats! I like cats! I like cats! I like cats!
+  </p>
+</div>
 ```
-
-**Note: The way the Router.js is implemented it calls the model function and**
-**the return value of that is passed to setup.**
-
-Since we're following along we can see that we are going to need to create a
-template to load. Let's create one named `cats.handlebars` in the handlebars
-directory.  And just for now I'm going to populate that with some [Cat Ipsum](http://www.catipsum.com/index.php).
-
-Now that the handlebars template has been created I can define and return my
-template in the `myHandlers.cats` object I created in `scripts/routing/router.js`.
-
-Now we can test out everything to make sure it's working.
 
 ## Lab: Adding your own route
 
--   Create "Book" route
--   Create click to change view state
--   Populate page with handlebars template
-
-## Demo: Connecting an API
-
-Now that we are able to serve up a template base on the URL let's now deal
-with an API payload.  Once again you do not have to code along but you may if
-you find it helps your understanding.
-
-In the last demo and then the lab we went through the steps to create a
-functioning route that loads a template.  Let's take a quick look at the `about`
-route and see what is happening.
-
-We're going to skip to the part where were dealing with the route handlers in
-`scripts/routing/router.js`.
-
-In the `myHandler.about` object we can see that the model contains a callback
-reffering to a commented ajax call in `scripts/api/requests.js`.  With some
-slight tinkering we can call out to our API and return some data.
-
-In the interest of time I am not going to create a handlebars template to
-handle the API payload but you will do something similar in the next lab.
-
-__Best practice is to handle your data in the model and setup your page in__
-__setup.__
-
-You can see in `scripts/routing/router.js` in the `myHandlers.about` object that
-actually append the template in the `setup` function.
+-   Create "Book" route.
+-   Change the view state.
+-   Add some [Cat Ipsum](http://www.catipsum.com/index.php).
 
 ## Lab: Connecting an API
 
@@ -175,27 +125,14 @@ Using the following site for dummy JSON please perform the following steps:
 
 API endpoint: `http://jsonplaceholder.typicode.com/posts`
 
--   Change "Book" template to handle API payload
--   Change view state so when you click "Book" in the navbar (you have to add
-    this yourself) it displays all of the books.
+We learned how to make API requests and have used them in all previous projects
+let's take that knowledge and hit an API.
 
-## Bonus Challenge
+-   Change the content of your `Books` div to reflect the API payload.
 
--   Change the page layout and color-scheme based on what "page" the user is on.
+## Bonus
 
--   On the books "page" only add a place below the navbar but before the
-    listing of all books, inside of that add a place to search for a single book based on ID.
-
--   Implement the code that will display the result of a user searching for that
-    ID and display it in the special space you just created.
-
-## Double Bonus
-
--   After doing the above, try to do it without having the location hash change.
-
-OR
-
--  After doing the above, try to do the same but with a nested route, so it
+-   After doing the above, try to do the same but with a nested route, so it
    would looks something like `localhost:8080/book/:id`
 
 ## Additional Resources
@@ -206,5 +143,6 @@ OR
 
 ## [License](LICENSE)
 
-Source code distributed under the MIT license. Text and other assets copyright
-General Assembly, Inc., all rights reserved.
+1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
+1.  All software code is licensed under GNU GPLv3. For commercial use or
+    alternative licensing, please contact legal@ga.co.
