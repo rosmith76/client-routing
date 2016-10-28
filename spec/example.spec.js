@@ -1,6 +1,6 @@
 'use strict';
 
-const example = require('../assets/scripts/router/index');
+const example = require('../assets/scripts/router');
 
 describe('Example', function () {
   it('is true', function () {
