@@ -8,11 +8,10 @@ const routes = router.rootNode.children.map((route) => {
 
 const registerPaths = () => {
   routes.forEach((route) => {
-    $(`a[href="${route}"]`).on('click', (event) => {
+    $(`a[href="#${route}"]`).on('click', (event) => {
       event.preventDefault();
 
       router.navigate(route);
-
     });
   });
 };

@@ -1,16 +1,10 @@
+
 'use strict';
 
-
-const initializeRouter = () => {
-  const appRouter = require('./router/index');
-
-  appRouter.useMiddleware(require('./router/dom').transition);
-
-  appRouter.start();
-};
-
-
 $(() => {
-  initializeRouter();
-  require('./events').registerPaths();
+  // create router
+  require('./router/index').start();
+
+  // make links work
+  require('./router/events').registerPaths();
 });

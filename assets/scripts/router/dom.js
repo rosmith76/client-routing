@@ -3,14 +3,15 @@
 const transition = () => {
   return (toState, fromState, done) => {
     if (fromState) {
-      $('#${fromState.name}').addClass('hidden');
+      $(`#${fromState.name}`).addClass('hidden');
     }
-    $('#${toState.name}').removeClass('hidden');
+
+    $(`#${toState.name}`).removeClass('hidden');
 
     done();
   };
 };
 
-module.export = {
+module.exports = {
   transition,
 };
