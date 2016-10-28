@@ -1,34 +1,32 @@
 'use strict';
 
-const paths = [
-  '#about',
-  '#projects',
-  '#talks',
-];
-
-const hideAllContent = () => {
-  paths.forEach((path) => {
-    $(`${path}`).addClass('hidden');
-  });
+const showAbout = () => {
+  $('#about').removeClass('hidden');
 };
 
-const showContent = (path) => {
-  $(`${path}`).removeClass('hidden');
+const showProjects = () => {
+  $('#projects').removeClass('hidden');
 };
 
-const registerPaths = () => {
-  paths.forEach((path) => {
-    $(`a[href="${path}"]`).on('click', (event) => {
-      event.preventDefault();
-
-      hideAllContent();
-      showContent(path);
-    });
-  });
+const showTalks = () => {
+  $('#talks').removeClass('hidden');
 };
 
 $(() => {
-  registerPaths();
+  $('a[href="#about"]').on('click', (event) => {
+    event.preventDefault();
+    showAbout();
+  });
+
+  $('a[href="#projects"]').on('click', (event) => {
+    event.preventDefault();
+    showProjects();
+  });
+
+  $('a[href="#talks"]').on('click', (event) => {
+    event.preventDefault();
+    showTalks();
+  });
 });
 
 module.exports = true;
